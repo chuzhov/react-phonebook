@@ -1,5 +1,4 @@
-**Read in other languages: [Русский](README.md), [Polska](README.pl.md),
-[English](README.en.md), [Spanish](README.es.md).**
+This is a test React project - a simple Phonebook.
 
 # React homework template
 
