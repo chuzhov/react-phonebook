@@ -2,8 +2,9 @@ import { Component } from "react";
 import { nanoid } from 'nanoid'
 import AddContact from "./AddContact/AddContact";
 import ContactList from "./ContactList/ContactList";
+import Filter from "./Filter/Filter"
 
-export class App extends Component {
+class App extends Component {
 
   state = {
     contacts: [
@@ -17,19 +18,16 @@ export class App extends Component {
     number: ''
   }
 
-  handleAddContact = (event) => {
-    event.preventDefault();
-    
-    const name  = event.target[0].value;
-    const number  = event.target[1].value;
+  handleChange = (event) => this.setState({name: event.target.value})
+
+  handleAddContact = (name, number) => {
     
     this.setState(prevState =>{
-      debugger
       if (prevState.contacts.find(el => el.name === name)) {
         alert(`The contact ${name} is already exist`);
         return
       }
-      debugger
+
       const checkNumber = prevState.contacts.find(el => el.number === number)
       if ( checkNumber) {
         alert(`This number is already assigned to another contact: ${checkNumber.name}`);
@@ -42,6 +40,29 @@ export class App extends Component {
     })
   }
 
+  handleDeleteContact = ( event ) => {
+    const id = event.target.id;
+    let arr = this.state.contacts;
+    this.setState(()=>{
+      arr = arr.filter((el)=>el.id !== id);
+      return { contacts: arr }
+    }) 
+  }
+
+  getNameFromFilter = ( name ) => {
+    this.setState((prevState)=>{
+      if (prevState !== name){
+        return { filter: name.trim() }
+      }
+    })
+  }
+
+  filteredContacts = () => {
+    return this.state.contacts.filter(el =>
+      el.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
+  };
+
   render() {
     return (
       <div
@@ -50,9 +71,12 @@ export class App extends Component {
         }}
       >
         <h1>Phonebook</h1>
-        <AddContact onSubmit={this.handleAddContact}/>
+        <AddContact onSubmit={this.handleAddContact}/> 
         <h2>Contacts</h2>
-        <ContactList contacts={this.state.contacts}/>
+        <Filter getName={this.getNameFromFilter}/>
+        <ContactList contacts={this.filteredContacts()}
+                     onDelete={this.handleDeleteContact} 
+        />
       </div>
     );
   }
