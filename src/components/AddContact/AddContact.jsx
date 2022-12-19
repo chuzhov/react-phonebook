@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import  { Component } from 'react'
 import css from "./AddContact.module.css";
 
@@ -30,7 +31,7 @@ class AddContact extends Component {
                 name="name"
                 type="text"
                 value={this.state.name}
-                onChange={(event)=>this.onChangeHandler(event)} 
+                onChange={this.onChangeHandler} 
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 required
@@ -52,13 +53,16 @@ class AddContact extends Component {
             <button
             className={css["btn"]}
             type="submit"
-            //  onSubmit={onSubmit}
             >
             Add contact
             </button>
         </form>
         )
     }
+}
+
+AddContact.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
 }
 
 export default AddContact;
