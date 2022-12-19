@@ -5,11 +5,10 @@ import css from "./ContactList.module.css"
 const ContactList = ( {contacts, onDelete} ) => {
     return (
         contacts.length ?
-            <ul>
+            <ul className={css["list"]}>
                 {contacts.map(el=><li key={"li"+el.id} className={css["item"]}>
-                    <p>{el.name}  <span>{el.number}</span></p>
-                    <DeleteContactBtn key={"DCB"+el.id} id={el.id} onDelete={onDelete}/>
-                    
+                    <p>{el.name}  <span className={css["phone-number"]}>{el.number}</span></p>
+                    <DeleteContactBtn key={"DCB"+el.id} id={el.id} onDelete={onDelete}/>  
                 </li>)}
             </ul>
         :

@@ -1,4 +1,13 @@
+.list {
+  width: fit-content;
+}
+
 .item {
   display: flex;
   align-items: center;
+}
+
+.phone-number {
+  margin-left: 1rem;
+  color: darkslategrey;
 }
