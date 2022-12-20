@@ -39,6 +39,7 @@ class App extends Component {
   }
 
   handleDeleteContact = ( event ) => {
+    
     let target = event.target;
     while (target.nodeName !== "BUTTON") {
       target = target.parentNode
