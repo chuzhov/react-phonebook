@@ -1,13 +1,20 @@
 .list {
+  padding: 0;
   width: fit-content;
 }
 
 .item {
   display: flex;
   align-items: center;
+  padding-left: 1rem;
+}
+
+.item:hover {
+  background-color: aliceblue;
 }
 
 .phone-number {
-  margin-left: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   color: darkslategrey;
 }
