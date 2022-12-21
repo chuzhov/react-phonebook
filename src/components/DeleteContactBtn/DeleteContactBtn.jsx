@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import css from './DeleteContactBtn.module.css';
+import sprite from '../../img/sprites.svg';
 
 const DeleteContactBtn = ({ id, onDelete }) => {
   return (
     <button id={id} className={css['del-btn']} onClick={onDelete}>
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-        <path d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z" />
+      <svg className={css['svg-icon']} width="20" height="20">
+        <use href={sprite + `#icon-delete`}></use>
       </svg>
     </button>
   );

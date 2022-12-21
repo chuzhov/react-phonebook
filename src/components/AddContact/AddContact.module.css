@@ -1,9 +1,11 @@
 .form {
+  display: flex;
   font-size: 1rem;
 }
 
 .input {
   font-size: 1rem;
+  margin-right: 1rem;
 }
 
 .label {
@@ -11,6 +13,17 @@
 }
 
 .btn {
-  height: 24.5px;
+  height: 30px;
+  width: 30px;
+  padding: 0;
+
+  border: none;
+  background-color: transparent;
+
   cursor: pointer;
+}
+
+.btn:hover {
+  background-color: lightgray;
+  border-radius: 50%;
 }

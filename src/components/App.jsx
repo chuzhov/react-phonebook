@@ -16,22 +16,22 @@ class App extends Component {
   };
 
   handleAddContact = (name, number) => {
-    this.setState(prevState => {
-      if (prevState.contacts.find(el => el.name === name)) {
-        alert(`The contact ${name} is already exist`);
-        return;
-      }
+    if (this.state.contacts.find(el => el.name === name)) {
+      alert(`The contact ${name} is already exist`);
+      return;
+    }
 
-      const checkNumber = prevState.contacts.find(el => el.number === number);
-      if (checkNumber) {
-        alert(
-          `This number is already assigned to another contact: ${checkNumber.name}`
-        );
-        return;
-      }
+    const checkNumber = this.state.contacts.find(el => el.number === number);
+    if (checkNumber) {
+      alert(
+        `This number is already assigned to another contact: ${checkNumber.name}`
+      );
+      return;
+    }
 
+    this.setState(() => {
       return {
-        contacts: [...prevState.contacts, { id: nanoid(), name, number }],
+        contacts: [...this.state.contacts, { id: nanoid(), name, number }],
       };
     });
   };

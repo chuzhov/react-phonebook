@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import css from './AddContact.module.css';
+import sprite from '../../img/sprites.svg';
 
 class AddContact extends Component {
   state = {
@@ -51,7 +52,9 @@ class AddContact extends Component {
           />
         </label>
         <button className={css['btn']} type="submit">
-          Add contact
+          <svg className={css['svg-icon']} width="24" height="24">
+            <use href={sprite + `#icon-person_add`}></use>
+          </svg>
         </button>
       </form>
     );
