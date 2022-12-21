@@ -26,7 +26,7 @@ class AddContact extends Component {
     return (
       <form className={css['form']} onSubmit={this.onSubmitHandler}>
         <label className={css['label']}>
-          <span> Name </span>
+          <span> Name: </span>
           <input
             className={css['input']}
             name="name"
@@ -39,7 +39,7 @@ class AddContact extends Component {
           />
         </label>
         <label className={css['label']}>
-          <span> Number </span>
+          <span> Number: </span>
           <input
             className={css['input']}
             type="tel"

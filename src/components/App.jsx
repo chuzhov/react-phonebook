@@ -37,16 +37,11 @@ class App extends Component {
   };
 
   handleDeleteContact = event => {
-    let target = event.target;
-    while (target.nodeName !== 'BUTTON') {
-      target = target.parentNode;
-    }
+    const id = event.currentTarget.id;
+    const contacts = this.state.contacts;
 
-    const id = target.id;
-    let arr = this.state.contacts;
     this.setState(() => {
-      arr = arr.filter(el => el.id !== id);
-      return { contacts: arr };
+      return { contacts: contacts.filter(el => el.id !== id) };
     });
   };
 
