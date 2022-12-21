@@ -15,8 +15,6 @@ class App extends Component {
     filter: '',
   };
 
-  handleChange = event => this.setState({ name: event.target.value });
-
   handleAddContact = (name, number) => {
     this.setState(prevState => {
       if (prevState.contacts.find(el => el.name === name)) {
@@ -76,7 +74,10 @@ class App extends Component {
         <h1>Phonebook</h1>
         <AddContact onSubmit={this.handleAddContact} />
         <h2>Contacts</h2>
-        <Filter getName={this.getNameFromFilter} />
+        <Filter
+          searchString={this.state.filter}
+          getName={this.getNameFromFilter}
+        />
         <ContactList
           contacts={this.filteredContacts()}
           onDelete={this.handleDeleteContact}

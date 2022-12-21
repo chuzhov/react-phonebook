@@ -1,35 +1,41 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 import css from 'components/Filter/Filter.module.css';
+import sprite from '../../img/sprites.svg';
 
-class Filter extends Component {
-  state = { name: '' };
-
-  onChangeHandler = event => {
-    const value = event.target.value;
-    if (value !== this.state.name) {
-      this.setState({ name: value });
-      this.props.getName(value);
-    }
+const Filter = ({ searchString, getName }) => {
+  const onChangeHandler = event => {
+    if (event.target.value !== searchString) getName(event.target.value);
   };
 
-  render() {
-    return (
+  return (
+    <>
       <label className={css['label']}>
         <span> Find contacts by name: </span>
-        <input
-          className={css['input']}
-          name="name"
-          type="text"
-          value={this.state.name}
-          onChange={this.onChangeHandler}
-        />
+        <div className={css['filter-input__wrapper']}>
+          <input
+            className={css['input']}
+            name="name"
+            type="text"
+            value={searchString}
+            onChange={onChangeHandler}
+          />
+          <button
+            type="button"
+            className={css['inline-btn']}
+            onClick={() => getName('')}
+          >
+            <svg className={css['svg-icon']} width="20" height="20">
+              <use href={sprite + `#icon-close`}></use>
+            </svg>
+          </button>
+        </div>
       </label>
-    );
-  }
-}
+    </>
+  );
+};
 
 Filter.propTypes = {
+  searchString: PropTypes.string.isRequired,
   getName: PropTypes.func.isRequired,
 };
 
