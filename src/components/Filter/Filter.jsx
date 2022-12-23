@@ -19,6 +19,7 @@ const Filter = ({ searchString, getName }) => {
             value={searchString}
             onChange={onChangeHandler}
           />
+          {searchString &&
           <button
             type="button"
             className={css['inline-btn']}
@@ -27,7 +28,7 @@ const Filter = ({ searchString, getName }) => {
             <svg className={css['svg-icon']} width="20" height="20">
               <use href={sprite + `#icon-close`}></use>
             </svg>
-          </button>
+          </button>}
         </div>
       </label>
     </>
