@@ -15,7 +15,7 @@ const ContactList = ({ contacts, onDelete }) => {
       ))}
     </ul>
   ) : (
-    <p>There aren't contacts here...</p>
+    <p>There aren't contacts matching...</p>
   );
 };
 

@@ -27,30 +27,57 @@ class AddContact extends Component {
       <form className={css['form']} onSubmit={this.onSubmitHandler}>
         <label className={css['label']}>
           <span> Name: </span>
-          <input
-            className={css['input']}
-            name="name"
-            type="text"
-            value={this.state.name}
-            onChange={this.onChangeHandler}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
+          <div className={css['input-wrapper']}>
+            <input
+              className={css['input']}
+              name="name"
+              type="text"
+              value={this.state.name}
+              onChange={this.onChangeHandler}
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+            />
+            {this.state.name && (
+              <button
+                type="button"
+                className={css['inline-btn']}
+                onClick={() => this.setState({ name: '' })}
+              >
+                <svg className={css['svg-icon']} width="20" height="20">
+                  <use href={sprite + `#icon-close`}></use>
+                </svg>
+              </button>
+            )}
+          </div>
         </label>
         <label className={css['label']}>
           <span> Number: </span>
-          <input
-            className={css['input']}
-            type="tel"
-            name="number"
-            value={this.state.number}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            onChange={this.onChangeHandler}
-          />
+          <div className={css['input-wrapper']}>
+            <input
+              className={css['input']}
+              type="tel"
+              name="number"
+              value={this.state.number}
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+              onChange={this.onChangeHandler}
+            />
+            {this.state.number && (
+              <button
+                type="button"
+                className={css['inline-btn']}
+                onClick={() => this.setState({ number: '' })}
+              >
+                <svg className={css['svg-icon']} width="20" height="20">
+                  <use href={sprite + `#icon-close`}></use>
+                </svg>
+              </button>
+            )}
+          </div>
         </label>
+
         <button className={css['btn']} type="submit">
           <svg className={css['svg-icon']} width="24" height="24">
             <use href={sprite + `#icon-person_add`}></use>
