@@ -13,29 +13,15 @@ const TEST_CONTACTS = [
 const LOCAL_STORAGE_KEY_CONTACTS = 'contacts';
 
 const App = () => {
-  const [contacts, setContacts] = useState(() => TEST_CONTACTS);
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_CONTACTS)) ??
+      TEST_CONTACTS
+  );
   const [filter, setFilter] = useState('');
 
-  // useEffect(() => {
-  //   let parsedContacts = JSON.parse(
-  //     localStorage.getItem(LOCAL_STORAGE_KEY_CONTACTS)
-  //   );
-
-  //   if (parsedContacts.length === 0) parsedContacts = TEST_CONTACTS;
-  //   setContacts(parsedContacts);
-  //   console.log("I'm useEffect on mounting study", contacts);
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem(LOCAL_STORAGE_KEY_CONTACTS, JSON.stringify(contacts));
-  //   console.log("I'm useEffect, saving to LS...", contacts);
-  //   debugger;
-  // }, [contacts]);
-
-  // componentDidMount() {
-  //   const parsedContacts = JSON.parse(localStorage.getItem("contacts")) ?? TEST_CONTACTS;
-  //   this.setState({ contacts: parsedContacts });
-  // }
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY_CONTACTS, JSON.stringify(contacts));
+  }, [contacts]);
 
   const handleAddContact = (name, number) => {
     if (contacts.find(el => el.name === name)) {
@@ -56,19 +42,13 @@ const App = () => {
       number,
       favorite: false,
     };
-
-    //   setContacts(prevContacts => [...prevContacts, newContact]);
-    setContacts(p => p.push(newContact));
-    console.log(contacts);
+    setContacts(contacts => [...contacts, newContact]);
   };
 
   const handleDeleteContact = event => {
     const id = event.currentTarget.id;
 
     setContacts(contacts.filter(el => el.id !== id));
-    console.log('Contacts after update: ', contacts);
-    console.log('delete handler');
-    console.log(contacts.filter(el => el.id !== id));
   };
 
   const getNameFromFilter = name => {
@@ -76,18 +56,10 @@ const App = () => {
   };
 
   const filteredContacts = () => {
-    debugger;
     return contacts.filter(el =>
       el.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-
-  // componentDidUpdate(prevProps, prevState) {
-
-  //   if (this.state.contacts.length !== prevState.contacts.length) {
-  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-  //   }
-  // }
 
   return (
     <div

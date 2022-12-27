@@ -8,7 +8,8 @@ const ContactList = ({ contacts, onDelete }) => {
       {contacts.map(el => (
         <li key={'li' + el.id} className={css['item']}>
           <p>
-            {el.name} <span className={css['phone-number']}>{el.number}</span>
+            <span className={css['name']}>{el.name}</span>
+            <span className={css['phone-number']}>{el.number}</span>
           </p>
           <DeleteContactBtn id={el.id} onDelete={onDelete} />
         </li>

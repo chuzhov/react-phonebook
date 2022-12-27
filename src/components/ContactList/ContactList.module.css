@@ -1,3 +1,8 @@
+p {
+  padding: 0;
+  margin: 0;
+}
+
 .list {
   padding: 0;
   width: fit-content;
@@ -5,7 +10,9 @@
 
 .item {
   display: flex;
+  justify-content: center;
   align-items: center;
+  row-gap: 0.5rem;
   padding-left: 1rem;
 }
 
@@ -13,8 +20,18 @@
   background-color: aliceblue;
 }
 
+.name {
+  display: inline-block;
+  overflow: hidden;
+  width: 150px;
+}
+
 .phone-number {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  display: inline-block;
+  overflow: hidden;
+  width: 150px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  text-align: right;
   color: darkslategrey;
 }

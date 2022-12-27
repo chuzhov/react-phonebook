@@ -19,16 +19,17 @@ const Filter = ({ searchString, getName }) => {
             value={searchString}
             onChange={onChangeHandler}
           />
-          {searchString &&
-          <button
-            type="button"
-            className={css['inline-btn']}
-            onClick={() => getName('')}
-          >
-            <svg className={css['svg-icon']} width="20" height="20">
-              <use href={sprite + `#icon-close`}></use>
-            </svg>
-          </button>}
+          {searchString && (
+            <button
+              type="button"
+              className={css['inline-btn']}
+              onClick={() => getName('')}
+            >
+              <svg className={css['svg-icon']} width="20" height="20">
+                <use href={sprite + `#icon-filter_list_off`}></use>
+              </svg>
+            </button>
+          )}
         </div>
       </label>
     </>
