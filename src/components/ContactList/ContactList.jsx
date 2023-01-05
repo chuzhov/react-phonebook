@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 //import { deleteContact } from 'components/redux/phonebookSlice/phonebookSlice';
+import StarBtn from 'components/StarBtn/StarBtn';
 import DeleteContactBtn from 'components/DeleteContactBtn/DeleteContactBtn';
 import css from './ContactList.module.css';
 
@@ -17,6 +18,7 @@ const ContactList = () => {
     <ul className={css['list']}>
       {filteredContacts.map(el => (
         <li key={'li' + el.id} className={css['item']}>
+          <StarBtn id={el.id} isFavorite={el.favorite} />
           <p>
             <span className={css['name']}>{el.name}</span>
             <span className={css['phone-number']}>{el.number}</span>

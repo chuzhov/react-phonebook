@@ -30,6 +30,13 @@ const phonebookSlice = createSlice({
     deleteContact(state, { payload }) {
       state.contacts = state.contacts.filter(contact => contact.id !== payload);
     },
+    toggleIsFavorite(state, { payload }) {
+      const indexOfToggled = state.contacts.findIndex(
+        contact => contact.id === payload
+      );
+      state.contacts[indexOfToggled].favorite =
+        !state.contacts[indexOfToggled].favorite;
+    },
     updateFilter(state, { payload }) {
       state.filter = payload;
     },
@@ -37,5 +44,5 @@ const phonebookSlice = createSlice({
 });
 
 export default phonebookSlice.reducer;
-export const { addContact, deleteContact, updateFilter } =
+export const { addContact, deleteContact, toggleIsFavorite, updateFilter } =
   phonebookSlice.actions;
