@@ -1,9 +1,6 @@
-import { useState, useEffect } from 'react';
 import AddContact from './AddContact/AddContact';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-
-const LOCAL_STORAGE_KEY_CONTACTS = 'contacts';
 
 const App = () => {
   return (

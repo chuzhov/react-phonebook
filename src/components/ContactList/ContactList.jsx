@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'components/redux/phonebookSlice/phonebookSlice';
+import { useSelector } from 'react-redux';
+//import { deleteContact } from 'components/redux/phonebookSlice/phonebookSlice';
 import DeleteContactBtn from 'components/DeleteContactBtn/DeleteContactBtn';
 import css from './ContactList.module.css';
 
