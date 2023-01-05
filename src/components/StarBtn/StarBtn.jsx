@@ -29,5 +29,5 @@ export default StarBtn;
 
 StarBtn.propTypes = {
   id: PropTypes.string.isRequired,
-  isStarred: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 };

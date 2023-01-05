@@ -18,7 +18,7 @@ const ContactList = () => {
     <ul className={css['list']}>
       {filteredContacts.map(el => (
         <li key={'li' + el.id} className={css['item']}>
-          <StarBtn id={el.id} isFavorite={el.favorite} />
+          <StarBtn id={el.id} isFavorite={el.isFavorite} />
           <p>
             <span className={css['name']}>{el.name}</span>
             <span className={css['phone-number']}>{el.number}</span>

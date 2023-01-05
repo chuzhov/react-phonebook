@@ -24,7 +24,7 @@ const phonebookSlice = createSlice({
         );
         return state;
       }
-      const newContact = { id, name, number, isfavorite: false };
+      const newContact = { id, name, number, isFavorite: false };
       state.contacts.push(newContact);
     },
     deleteContact(state, { payload }) {
@@ -34,8 +34,8 @@ const phonebookSlice = createSlice({
       const indexOfToggled = state.contacts.findIndex(
         contact => contact.id === payload
       );
-      state.contacts[indexOfToggled].favorite =
-        !state.contacts[indexOfToggled].favorite;
+      state.contacts[indexOfToggled].isFavorite =
+        !state.contacts[indexOfToggled].isFavorite;
     },
     updateFilter(state, { payload }) {
       state.filter = payload;
