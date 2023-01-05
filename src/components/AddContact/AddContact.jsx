@@ -1,21 +1,22 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { addContact } from 'components/redux/phonebookSlice/phonebookSlice';
+
 import css from './AddContact.module.css';
 import sprite from '../../img/sprites.svg';
 
-const AddContact = ({ onSubmit }) => {
+const AddContact = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  // const onChangeHandler = event => {
-  //   setContact(c => {
-  //     return [...c, { [event.target.name]: event.target.value }];
-  //   });
-  // };
+  const dispatch = useDispatch();
 
   const onSubmitHandler = event => {
     event.preventDefault();
-    onSubmit(name, number);
+
+    dispatch(addContact({ name, number }));
+
     setName('');
     setNumber('');
   };
@@ -81,10 +82,6 @@ const AddContact = ({ onSubmit }) => {
       </button>
     </form>
   );
-};
-
-AddContact.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default AddContact;

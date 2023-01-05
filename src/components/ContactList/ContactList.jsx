@@ -1,34 +1,35 @@
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact } from 'components/redux/phonebookSlice/phonebookSlice';
 import DeleteContactBtn from 'components/DeleteContactBtn/DeleteContactBtn';
 import css from './ContactList.module.css';
 
-const ContactList = ({ contacts, onDelete }) => {
-  return contacts.length ? (
+const ContactList = () => {
+  const contacts = useSelector(state => state.phonebook.contacts);
+  const query = useSelector(state => state.phonebook.filter);
+  const filteredContacts =
+    query.length === 0
+      ? contacts
+      : contacts.filter(contact =>
+          contact.name.toLowerCase().includes(query.toLowerCase())
+        );
+
+  return filteredContacts.length ? (
     <ul className={css['list']}>
-      {contacts.map(el => (
+      {filteredContacts.map(el => (
         <li key={'li' + el.id} className={css['item']}>
           <p>
             <span className={css['name']}>{el.name}</span>
             <span className={css['phone-number']}>{el.number}</span>
           </p>
-          <DeleteContactBtn id={el.id} onDelete={onDelete} />
+          <DeleteContactBtn id={el.id} />
         </li>
       ))}
     </ul>
+  ) : contacts.length === 0 ? (
+    <p>Your contact list is empty</p>
   ) : (
-    <p>There aren't contacts matching...</p>
+    <p>There aren't contacts matching Your query</p>
   );
-};
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default ContactList;
