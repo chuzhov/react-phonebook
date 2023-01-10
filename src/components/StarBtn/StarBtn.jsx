@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { toggleIsFavorite } from 'components/redux/phonebookSlice/phonebookSlice';
-
 import css from './StarBtn.module.css';
 import sprite from '../../img/sprites.svg';
 import { updateContactOp } from 'components/redux/operations/phonebookOps';
