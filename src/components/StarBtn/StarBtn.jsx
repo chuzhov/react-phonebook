@@ -5,6 +5,7 @@ import { toggleIsFavorite } from 'components/redux/phonebookSlice/phonebookSlice
 
 import css from './StarBtn.module.css';
 import sprite from '../../img/sprites.svg';
+import { updateContactOp } from 'components/redux/operations/phonebookOps';
 
 const StarBtn = ({ id, isFavorite }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const StarBtn = ({ id, isFavorite }) => {
     <button
       type="button"
       className={css['favorite-button']}
-      onClick={e => dispatch(toggleIsFavorite(id))}
+      onClick={e => dispatch(updateContactOp({ id, isFavorite }))}
     >
       <svg
         className={isFavorite ? css['svg-icon is-starred'] : css['svg-icon']}

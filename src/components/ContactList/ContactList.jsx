@@ -3,9 +3,11 @@ import { useSelector } from 'react-redux';
 import StarBtn from 'components/StarBtn/StarBtn';
 import DeleteContactBtn from 'components/DeleteContactBtn/DeleteContactBtn';
 import css from './ContactList.module.css';
+import { useEffect } from 'react';
+import { fetchContactsOp } from 'components/redux/operations/phonebookOps';
 
 const ContactList = () => {
-  const contacts = useSelector(state => state.phonebook.contacts);
+  const contacts = useSelector(state => state.phonebook.contacts.items);
   const query = useSelector(state => state.phonebook.filter);
   const filteredContacts =
     query.length === 0

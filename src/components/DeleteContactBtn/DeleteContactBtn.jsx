@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteContact } from 'components/redux/phonebookSlice/phonebookSlice';
+import { deleteContactOp } from 'components/redux/operations/phonebookOps';
 import css from './DeleteContactBtn.module.css';
 import sprite from '../../img/sprites.svg';
 
@@ -9,7 +10,7 @@ const DeleteContactBtn = ({ id }) => {
   return (
     <button
       className={css['del-btn']}
-      onClick={e => dispatch(deleteContact(id))}
+      onClick={() => dispatch(deleteContactOp(id))}
     >
       <svg className={css['svg-icon']} width="20" height="20">
         <use href={sprite + `#icon-delete`}></use>

@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addContact } from 'components/redux/phonebookSlice/phonebookSlice';
-
 import css from './AddContact.module.css';
 import sprite from '../../img/sprites.svg';
+import { addContactOp } from 'components/redux/operations/phonebookOps';
 
 const AddContact = () => {
   const [name, setName] = useState('');
@@ -15,7 +14,7 @@ const AddContact = () => {
   const onSubmitHandler = event => {
     event.preventDefault();
 
-    dispatch(addContact({ name, number }));
+    dispatch(addContactOp({ name, number, isFavorite: false }));
 
     setName('');
     setNumber('');
@@ -35,6 +34,7 @@ const AddContact = () => {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
+            // autoComplete="off"
           />
           {name && (
             <button

@@ -1,3 +1,4 @@
+import Init from './Init/Init';
 import AddContact from './AddContact/AddContact';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
@@ -9,6 +10,7 @@ const App = () => {
         padding: '1rem',
       }}
     >
+      <Init />
       <h1>Phonebook</h1>
       <AddContact />
       <h2>Contacts</h2>
