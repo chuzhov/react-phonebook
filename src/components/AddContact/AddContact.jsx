@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import css from './AddContact.module.css';
 import sprite from '../../img/sprites.svg';
@@ -8,11 +8,24 @@ import { addContactOp } from 'components/redux/operations/phonebookOps';
 const AddContact = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(state => state.phonebook.contacts.items);
 
   const dispatch = useDispatch();
 
   const onSubmitHandler = event => {
     event.preventDefault();
+
+    if (contacts.find(contact => contact.name === name)) {
+      alert('This contact is already exist in your contact list');
+      return null;
+    }
+    const isNumberSaved = contacts.find(contact => contact.number === number);
+    if (isNumberSaved) {
+      alert(
+        `This number is already saved in your contact list to ${isNumberSaved.name}`
+      );
+      return null;
+    }
 
     dispatch(addContactOp({ name, number, isFavorite: false }));
 

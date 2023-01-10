@@ -6,7 +6,7 @@ import sprite from '../../img/sprites.svg';
 
 const Filter = () => {
   let query = useSelector(state => state.phonebook.filter);
-  const contacts = useSelector(state => state.phonebook.contacts);
+  const contacts = useSelector(state => state.phonebook.contacts.items);
   const dispatch = useDispatch();
 
   return (

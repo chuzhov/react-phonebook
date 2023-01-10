@@ -1,10 +1,7 @@
 import { useSelector } from 'react-redux';
-//import { deleteContact } from 'components/redux/phonebookSlice/phonebookSlice';
 import StarBtn from 'components/StarBtn/StarBtn';
 import DeleteContactBtn from 'components/DeleteContactBtn/DeleteContactBtn';
 import css from './ContactList.module.css';
-import { useEffect } from 'react';
-import { fetchContactsOp } from 'components/redux/operations/phonebookOps';
 
 const ContactList = () => {
   const contacts = useSelector(state => state.phonebook.contacts.items);
