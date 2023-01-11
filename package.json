@@ -1,8 +1,8 @@
 {
-  "name": "GO IT! HW07 React Rdux Toolkit",
+  "name": "GO IT! HW08 React Redux Toolkit",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chuzhov.github.io/goit-react-hw-07-phonebook/",
+  "homepage": "https://chuzhov.github.io/goit-react-hw-08-phonebook/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.3",
