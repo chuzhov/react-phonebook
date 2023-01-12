@@ -1,11 +1,21 @@
-import { useSelector } from 'react-redux';
-import StarBtn from 'components/StarBtn/StarBtn';
+import { useDispatch, useSelector } from 'react-redux';
 import DeleteContactBtn from 'components/DeleteContactBtn/DeleteContactBtn';
 import css from './ContactList.module.css';
+import {
+  selectPhonebookFilter,
+  selectPhonebookItems,
+} from 'components/phonebook/phonebookSelectors';
+import { useEffect } from 'react';
+import { fetchContactsOp } from 'components/phonebook/phonebookOps';
 
 const ContactList = () => {
-  const contacts = useSelector(state => state.phonebook.contacts.items);
-  const query = useSelector(state => state.phonebook.filter);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContactsOp());
+  }, [dispatch]);
+
+  const contacts = useSelector(selectPhonebookItems);
+  const query = useSelector(selectPhonebookFilter);
   const filteredContacts =
     query.length === 0
       ? contacts
@@ -17,7 +27,6 @@ const ContactList = () => {
     <ul className={css['list']}>
       {filteredContacts.map(el => (
         <li key={'li' + el.id} className={css['item']}>
-          <StarBtn id={el.id} isFavorite={el.isFavorite} />
           <p>
             <span className={css['name']}>{el.name}</span>
             <span className={css['phone-number']}>{el.number}</span>

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFilter } from '../redux/phonebookSlice/phonebookSlice';
+import { updateFilter } from '../phonebook/phonebookSlice';
 
 import css from 'components/Filter/Filter.module.css';
 import sprite from '../../img/sprites.svg';

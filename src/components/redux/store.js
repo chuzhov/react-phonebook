@@ -1,33 +1,38 @@
 import { configureStore } from '@reduxjs/toolkit';
-import phonebookReducer from './phonebookSlice/phonebookSlice';
+import phonebookReducer from '../phonebook/phonebookSlice';
+import authReducer from '../auth/authSlice';
 
-// const TEST_CONTACTS = [
-//   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56', isFavorite: false },
-//   {
-//     id: 'id-2',
-//     name: 'Hermione Kline',
-//     number: '443-89-12',
-//     isFavorite: false,
-//   },
-//   { id: 'id-3', name: 'Eden Clements', number: '645-17-79', isFavorite: false },
-//   {
-//     id: 'id-4',
-//     name: 'Annie Copeland',
-//     number: '227-91-26',
-//     isFavorite: false,
-//   },
-// ];
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const initialState = {
-  phonebook: {
-    contacts: { items: [], isLoading: false, error: null },
-    filter: '',
-  },
+const authPersistConfig = {
+  key: 'token',
+  storage,
+  whitelist: ['token'],
 };
+
+const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
+    auth: authPersistedReducer,
     phonebook: phonebookReducer,
   },
-  preloadedState: initialState,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);

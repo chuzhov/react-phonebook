@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import css from './AddContact.module.css';
 import sprite from '../../img/sprites.svg';
-import { addContactOp } from 'components/redux/operations/phonebookOps';
+import { addContactOp } from 'components/phonebook/phonebookOps';
 
 const AddContact = () => {
   const [name, setName] = useState('');
@@ -27,7 +27,7 @@ const AddContact = () => {
       return null;
     }
 
-    dispatch(addContactOp({ name, number, isFavorite: false }));
+    dispatch(addContactOp({ name, number }));
 
     setName('');
     setNumber('');

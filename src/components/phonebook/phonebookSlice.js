@@ -3,8 +3,8 @@ import {
   addContactOp,
   fetchContactsOp,
   deleteContactOp,
-  updateContactOp,
-} from '../operations/phonebookOps';
+  // updateContactOp,
+} from './phonebookOps';
 
 const pendingRoutine = state => {
   state.contacts.isLoading = true;
@@ -48,16 +48,7 @@ const phonebookSlice = createSlice({
           contact => contact.id !== id
         );
       })
-      .addCase(deleteContactOp.rejected, onRejectRoutine)
-      .addCase(updateContactOp.pending, pendingRoutine)
-      .addCase(updateContactOp.fulfilled, (state, { payload }) => {
-        const index = state.contacts.items.findIndex(
-          item => item.id === payload.id
-        );
-        state.contacts.items[index] = payload;
-      })
-      .addCase(updateContactOp.rejected, onRejectRoutine),
+      .addCase(deleteContactOp.rejected, onRejectRoutine),
 });
-
 export default phonebookSlice.reducer;
 export const { updateFilter } = phonebookSlice.actions;

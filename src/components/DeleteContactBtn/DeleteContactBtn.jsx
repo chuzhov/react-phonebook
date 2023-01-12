@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { deleteContactOp } from 'components/redux/operations/phonebookOps';
+import { deleteContactOp } from 'components/phonebook/phonebookOps';
 import css from './DeleteContactBtn.module.css';
 import sprite from '../../img/sprites.svg';
 
