@@ -52,11 +52,7 @@ export const deleteContactOp = createAsyncThunk(
         `https://connections-api.herokuapp.com/contacts/${id}`
       );
       thunkAPI.dispatch(
-        setSnackbar(
-          true,
-          'success',
-          `Contact ${contact.name} is successfully deleted`
-        )
+        setSnackbar(true, 'success', `The contact was successfully deleted`)
       );
       return data;
     } catch (error) {
