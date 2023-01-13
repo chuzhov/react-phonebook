@@ -16,11 +16,14 @@ export const addContactOp = createAsyncThunk(
         setSnackbar(
           true,
           'success',
-          `Contact ${contact.name} succesfully added`
+          `Contact ${contact.name} is successfully added`
         )
       );
       return data;
     } catch (error) {
+      thunkAPI.dispatch(
+        setSnackbar(true, 'error', `Failed. Server responce: ${error.message}`)
+      );
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -48,8 +51,18 @@ export const deleteContactOp = createAsyncThunk(
       const { data } = await axios.delete(
         `https://connections-api.herokuapp.com/contacts/${id}`
       );
+      thunkAPI.dispatch(
+        setSnackbar(
+          true,
+          'success',
+          `Contact ${contact.name} is successfully deleted`
+        )
+      );
       return data;
     } catch (error) {
+      thunkAPI.dispatch(
+        setSnackbar(true, 'error', `Failed. Server responce: ${error.message}`)
+      );
       return thunkAPI.rejectWithValue(error);
     }
   }

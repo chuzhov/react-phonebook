@@ -1,13 +1,13 @@
+import { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { Outlet } from 'react-router';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import { selectIsLogged } from './auth/authSelectors';
-import { useEffect } from 'react';
 import { getUserOp } from './auth/authOps';
 import Navigation from './Navigation/Navigation';
-import { Outlet } from 'react-router';
 import ContactsPage from 'pages/ContactsPage';
 import CustomizedSnackbars from './snackbar/Snackbar.jsx';
 
@@ -53,17 +53,20 @@ const App = () => {
       </Routes>
     </>
   ) : (
-    <Routes>
-      <Route
-        path="/login"
-        element={<PublicRoute component={<LoginPage />} />}
-      />
-      <Route
-        path="/register"
-        element={<PublicRoute component={<RegisterPage />} />}
-      />
-      <Route path="*" element={<Navigate to="/login" />} />
-    </Routes>
+    <>
+      <CustomizedSnackbars />
+      <Routes>
+        <Route
+          path="/login"
+          element={<PublicRoute component={<LoginPage />} />}
+        />
+        <Route
+          path="/register"
+          element={<PublicRoute component={<RegisterPage />} />}
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </>
   );
 };
 

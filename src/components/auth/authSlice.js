@@ -8,12 +8,14 @@ import {
 
 const setPendingRoutines = state => {
   state.isLoading = true;
+  state.error = '';
 };
 
 const setErrorRoutines = (state, { payload }) => {
   state.isLoading = false;
   state.isLogged = false;
   state.error = payload;
+  state.token = '';
 };
 
 const authSlice = createSlice({
@@ -29,21 +31,34 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(registerUserOp.pending, setPendingRoutines)
-      .addCase(registerUserOp.rejected, setErrorRoutines)
-      .addCase(registerUserOp.fulfilled, (state, responce) => {
-        state.token = responce.payload.token;
-        state.name = responce.payload.user.name;
-        state.email = responce.payload.user.email;
+      .addCase(registerUserOp.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isLogged = false;
+        state.error = payload;
+        state.token = '';
+      })
+      .addCase(registerUserOp.fulfilled, (state, { payload }) => {
+        state.token = payload.token;
+        state.name = payload.user.name;
+        state.email = payload.user.email;
         state.isLoading = false;
         state.isLogged = true;
         state.error = null;
       })
       .addCase(loginUserOp.pending, setPendingRoutines)
-      .addCase(loginUserOp.rejected, setErrorRoutines)
-      .addCase(loginUserOp.fulfilled, (state, responce) => {
-        state.token = responce.payload.token;
-        state.name = responce.payload.user.name;
-        state.email = responce.payload.user.email;
+      .addCase(
+        loginUserOp.rejected,
+        (state, { payload: { serverErrorMsg } }) => {
+          state.isLoading = false;
+          state.isLogged = false;
+          state.error = serverErrorMsg;
+          state.token = '';
+        }
+      )
+      .addCase(loginUserOp.fulfilled, (state, { payload }) => {
+        state.token = payload.token;
+        state.name = payload.user.name;
+        state.email = payload.user.email;
         state.isLoading = false;
         state.isLogged = true;
         state.error = null;

@@ -49,7 +49,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign up to Contacts manager
           </Typography>
           <Box
             component="form"
@@ -108,7 +108,7 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-start">
               <Grid item>
                 <Link to="/login">Already have an account? Sign in</Link>
               </Grid>
