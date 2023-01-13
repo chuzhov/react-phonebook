@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -16,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUserOp } from 'components/auth/authOps';
+import { setSnackbar } from 'components/snackbar/snackbarOps';
 
 const theme = createTheme();
 
@@ -24,11 +23,27 @@ export default function SignUp() {
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
+    const email = data.get('email');
+    const password = data.get('password');
+    const name = data.get('firstName');
+
+    if (!email || !password || !name) {
+      dispatch(
+        setSnackbar(
+          true,
+          'error',
+          `Fields First name, e-mail, and password all should be entered`
+        )
+      );
+      return null;
+    }
+
     dispatch(
       registerUserOp({
-        email: data.get('email'),
-        password: data.get('password'),
-        name: data.get('firstName'),
+        email,
+        password,
+        name,
       })
     );
   };

@@ -13,7 +13,7 @@ const Filter = () => {
     contacts.length > 0 && (
       <>
         <label className={css['label']}>
-          <span> Find contacts by name: </span>
+          <span> Find or filter contacts by name: </span>
           <div className={css['filter-input__wrapper']}>
             <input
               className={css['input']}

@@ -6,7 +6,7 @@ const ContactsPage = () => {
     <div style={{ padding: '1rem' }}>
       <h2>Add contact:</h2>
       <AddContact />
-      <h2>Contacts</h2>
+      <h2>Contact list:</h2>
       <Filter />
       <ContactList />
     </div>

@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUserOp } from 'components/auth/authOps';
+import { setSnackbar } from 'components/snackbar/snackbarOps';
 
 const theme = createTheme();
 
@@ -22,9 +23,15 @@ export default function SignInSide() {
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    dispatch(
-      loginUserOp({ email: data.get('email'), password: data.get('password') })
-    );
+    const email = data.get('email');
+    const password = data.get('password');
+    if (!email || !password) {
+      dispatch(
+        setSnackbar(true, 'error', `Both e-mail and password should be entered`)
+      );
+      return null;
+    }
+    dispatch(loginUserOp({ email, password }));
   };
 
   return (

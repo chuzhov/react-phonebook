@@ -2,13 +2,15 @@ import { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router';
-import HomePage from '../pages/HomePage';
+
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
+import Navigation from './Navigation/Navigation';
+import HomePage from '../pages/HomePage';
+import ContactsPage from 'pages/ContactsPage';
+
 import { selectIsLogged } from './auth/authSelectors';
 import { getUserOp } from './auth/authOps';
-import Navigation from './Navigation/Navigation';
-import ContactsPage from 'pages/ContactsPage';
 import CustomizedSnackbars from './snackbar/Snackbar.jsx';
 
 const App = () => {
@@ -37,8 +39,7 @@ const App = () => {
     );
   };
 
-  const isLogged = useSelector(selectIsLogged);
-  return isLogged ? (
+  return (
     <>
       <CustomizedSnackbars />
       <Routes>
@@ -49,13 +50,6 @@ const App = () => {
             element={<PrivateRoute component={<ContactsPage />} />}
           />
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </>
-  ) : (
-    <>
-      <CustomizedSnackbars />
-      <Routes>
         <Route
           path="/login"
           element={<PublicRoute component={<LoginPage />} />}
@@ -64,7 +58,7 @@ const App = () => {
           path="/register"
           element={<PublicRoute component={<RegisterPage />} />}
         />
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
