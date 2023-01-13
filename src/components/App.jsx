@@ -17,6 +17,16 @@ const App = () => {
     dispatch(getUserOp());
   }, [dispatch]);
 
+  const PrivateRoute = ({ component, redirectTo = '/login' }) => {
+    const isAuth = useSelector(selectIsLogged);
+    return isAuth ? component : <Navigate to={redirectTo} />;
+  };
+
+  const PublicRoute = ({ component, redirectTo = '/' }) => {
+    const isAuth = useSelector(selectIsLogged);
+    return !isAuth ? component : <Navigate to={redirectTo} />;
+  };
+
   const SharedLayout = () => {
     return (
       <>
@@ -30,15 +40,24 @@ const App = () => {
   return isLogged ? (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
+        <Route index element={<PrivateRoute component={<HomePage />} />} />
+        <Route
+          path="/contacts"
+          element={<PrivateRoute component={<ContactsPage />} />}
+        />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   ) : (
     <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+      <Route
+        path="/login"
+        element={<PublicRoute component={<LoginPage />} />}
+      />
+      <Route
+        path="/register"
+        element={<PublicRoute component={<RegisterPage />} />}
+      />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
