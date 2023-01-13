@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import phonebookReducer from '../phonebook/phonebookSlice';
 import authReducer from '../auth/authSlice';
+import snackbarReducer from '../snackbar/snackbarReducer';
 
 import {
   persistStore,
@@ -26,6 +27,7 @@ export const store = configureStore({
   reducer: {
     auth: authPersistedReducer,
     phonebook: phonebookReducer,
+    snackbar: snackbarReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

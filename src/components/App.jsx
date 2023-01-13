@@ -9,6 +9,7 @@ import { getUserOp } from './auth/authOps';
 import Navigation from './Navigation/Navigation';
 import { Outlet } from 'react-router';
 import ContactsPage from 'pages/ContactsPage';
+import CustomizedSnackbars from './snackbar/Snackbar.jsx';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,16 +39,19 @@ const App = () => {
 
   const isLogged = useSelector(selectIsLogged);
   return isLogged ? (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<PrivateRoute component={<HomePage />} />} />
-        <Route
-          path="/contacts"
-          element={<PrivateRoute component={<ContactsPage />} />}
-        />
-      </Route>
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <>
+      <CustomizedSnackbars />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<PrivateRoute component={<HomePage />} />} />
+          <Route
+            path="/contacts"
+            element={<PrivateRoute component={<ContactsPage />} />}
+          />
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </>
   ) : (
     <Routes>
       <Route
@@ -61,8 +65,6 @@ const App = () => {
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
-  {
-  }
 };
 
 export default App;

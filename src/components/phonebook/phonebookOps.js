@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { setSnackbar } from 'components/snackbar/snackbarOps';
 
 //axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -10,6 +11,13 @@ export const addContactOp = createAsyncThunk(
       const { data } = await axios.post(
         'https://connections-api.herokuapp.com/contacts',
         contact
+      );
+      thunkAPI.dispatch(
+        setSnackbar(
+          true,
+          'success',
+          `Contact ${contact.name} succesfully added`
+        )
       );
       return data;
     } catch (error) {

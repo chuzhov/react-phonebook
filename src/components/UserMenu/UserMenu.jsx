@@ -1,6 +1,6 @@
 import { logoutUserOp } from 'components/auth/authOps';
 import { useDispatch, useSelector } from 'react-redux';
-import css from './UserMenu.css';
+import './UserMenu.css';
 
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
