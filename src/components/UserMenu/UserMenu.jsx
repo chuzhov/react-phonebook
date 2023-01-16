@@ -1,10 +1,10 @@
-import { logoutUserOp } from 'components/auth/authOps';
+import { logoutUserOp } from 'components/redux/auth/authOps';
 import { useDispatch, useSelector } from 'react-redux';
 import './UserMenu.css';
 
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { selectUserName } from 'components/auth/authSelectors';
+import { selectUserName } from 'components/redux/auth/authSelectors';
 import { Logo } from 'components/Logo/Logo';
 import { NavLink } from 'react-router-dom';
 

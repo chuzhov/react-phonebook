@@ -13,8 +13,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { registerUserOp } from 'components/auth/authOps';
-import { setSnackbar } from 'components/snackbar/snackbarOps';
+import { registerUserOp } from 'components/redux/auth/authOps';
+import { setSnackbar } from 'components/redux/snackbar/snackbarOps';
 
 const theme = createTheme();
 

@@ -4,9 +4,9 @@ import css from './ContactList.module.css';
 import {
   selectPhonebookFilter,
   selectPhonebookItems,
-} from 'components/phonebook/phonebookSelectors';
+} from 'components/redux/phonebook/phonebookSelectors';
 import { useEffect } from 'react';
-import { fetchContactsOp } from 'components/phonebook/phonebookOps';
+import { fetchContactsOp } from 'components/redux/phonebook/phonebookOps';
 
 const ContactList = () => {
   const dispatch = useDispatch();

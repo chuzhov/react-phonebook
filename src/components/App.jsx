@@ -9,9 +9,9 @@ import Navigation from './Navigation/Navigation';
 import HomePage from '../pages/HomePage';
 import ContactsPage from 'pages/ContactsPage';
 
-import { selectIsLogged } from './auth/authSelectors';
-import { getUserOp } from './auth/authOps';
-import CustomizedSnackbars from './snackbar/Snackbar.jsx';
+import { selectIsLogged } from './redux/auth/authSelectors';
+import { getUserOp } from './redux/auth/authOps';
+import CustomizedSnackbars from './redux/snackbar/Snackbar.jsx';
 
 const App = () => {
   const dispatch = useDispatch();

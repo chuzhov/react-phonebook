@@ -1,4 +1,4 @@
-import { selectUserName } from 'components/auth/authSelectors';
+import { selectUserName } from 'components/redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
 
 const HomePage = () => {

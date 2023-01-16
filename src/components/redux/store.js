@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import phonebookReducer from '../phonebook/phonebookSlice';
-import authReducer from '../auth/authSlice';
-import snackbarReducer from '../snackbar/snackbarReducer';
+import phonebookReducer from './phonebook/phonebookSlice';
+import authReducer from './auth/authSlice';
+import snackbarReducer from './snackbar/snackbarReducer';
 
 import {
   persistStore,

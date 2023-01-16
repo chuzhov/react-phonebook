@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { setSnackbar } from 'components/snackbar/snackbarOps';
+import { setSnackbar } from 'components/redux/snackbar/snackbarOps';
 
 //axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
